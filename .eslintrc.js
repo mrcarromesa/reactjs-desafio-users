@@ -77,6 +77,8 @@ module.exports = {
     "react/function-component-definition": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-curly-newline": "off",
+    "react/require-default-props": "off",
+    "react/no-unstable-nested-components": "off",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error"
   },

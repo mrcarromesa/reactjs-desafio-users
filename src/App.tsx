@@ -1,9 +1,17 @@
 import React from 'react';
+import { HashRouter } from 'react-router-dom';
 
-import Header from '~/components/Header';
+import GlobalStyle from '~/styles/globals';
 
-function App() {
-  return <Header />;
-}
+import Routes from './routes';
+
+const App: React.FC = () => (
+  <>
+    <HashRouter>
+      <Routes />
+    </HashRouter>
+    <GlobalStyle />
+  </>
+);
 
 export default App;
