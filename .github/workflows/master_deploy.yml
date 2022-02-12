@@ -26,5 +26,8 @@ jobs:
       run: npm install
     - name: Deploy to GH Packages
       run: npm run build
-    - name: Updating Domain
-      run: echo "Update domain"
+    - name: Deploy 🚀
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_dir: ./build

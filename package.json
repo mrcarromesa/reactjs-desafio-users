@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "CRUD de usuários com react",
-  "homepage": "https://github.com/mrcarromesa/reactjs-desafio-users",
+  "homepage": "https://mrcarromesa.github.io/reactjs-desafio-users",
   "author": "@mrcarromesa",
   "dependencies": {
     "@types/styled-components": "^5.1.22",

@@ -1,46 +1,63 @@
-# Getting Started with Create React App
+# Gerar Git pages com action
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Baseado no artigo [Deploy React App using GitHub Actions](https://dev.to/achukka/deploy-react-app-using-github-actions-157d)
 
-## Available Scripts
+- Primeiro de tudo adicionar no arquivo `package.json` o seguinte:
 
-In the project directory, you can run:
+```json
+"homepage": "https://<githubusername>.github.io/<app>"
+```
 
-### `yarn start`
+- Alterar o `<githubusername>` pelo seu usuário do github e o `<app>` pelo nome do repositório
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Adicionar uma branch chamada `gh_pages` e nas configurações do repositório na parte de Page adiciona-lo:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![Configurar pg no github](./assets_readme/gh_p.png "Configurar página no github")
 
-### `yarn test`
+- No projeto criar o arquivo `.github/workflows/NOME_DO_SEU_WORKFLOW.yml` no meu caso criei o arquivo `.github/workflows/master_deploy.yml` só acessá-lo e verificar o conteúdo!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Gere uma ssh key com esse comando:
 
-### `yarn build`
+```shell
+ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f "<your-deploy-branch>" -N ""
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Será gerado dois arquivos na pasta, lembre de não envia-los par
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `<your-deploy-branch>.pub`
+- `<your-deploy-branch>` (private key)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Adicione o valor da .pub no deploy keys do github:
 
-### `yarn eject`
+![Configurar keys](./assets_readme/deploy_key.png "keys")
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- O valor da private key adicionar nas envs:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Configurar envs](./assets_readme/envs.png "envs")
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Ajustar no arquivo: `.github/workflows/master_deploy.yml`:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```yml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+    # MORE ...
+    # MORE ...
+    # MORE ...
+    # MORE ...
+    # MORE ...
+    - name: Deploy 🚀
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }} # NOME CONFORME ADICIONADO NAS ENVS
+        publish_dir: ./build
+```
 
-## Learn More
+- Realizar o commit normalmente e deve ser executado a action!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- E porfim será possível acessar a page!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
