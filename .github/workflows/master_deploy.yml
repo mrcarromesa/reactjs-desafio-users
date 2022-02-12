@@ -20,7 +20,7 @@ jobs:
         echo "Hello World"
         echo "Hello!!!"
     - name: Install Packages
-      run: npm Install
+      run: npm install
     - name: Deploy to GH Packages
       run: npm run deploy
     - name: Updating Domain
