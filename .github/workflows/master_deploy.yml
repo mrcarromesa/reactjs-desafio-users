@@ -1,0 +1,27 @@
+name: MasterDeployCI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-nodev@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Hello World
+      run: |
+        echo "Hello World"
+        echo "Hello!!!"
+    - name: Install Packages
+      run: npm Install
+    - name: Deploy to GH Packages
+      run: npm run deploy
+    - name: Updating Domain
+      run: echo "Update domain"
