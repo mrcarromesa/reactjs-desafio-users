@@ -29,11 +29,15 @@ ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f "<your-deploy-branch>
 
 - Adicione o valor da .pub no deploy keys do github:
 
+
 ![Configurar keys](./assets_readme/deploy_key.png "keys")
 
 - O valor da private key adicionar nas envs:
+- Para tal veja essa instrução:
 
-![Configurar envs](./assets_readme/envs.png "envs")
+[How to access secrets when using flutter web with github actions](https://stackoverflow.com/questions/67964110/how-to-access-secrets-when-using-flutter-web-with-github-actions/67998780#67998780)
+
+![Configurar envs](./assets_readme/envs_ok.png "envs")
 
 - Ajustar no arquivo: `.github/workflows/master_deploy.yml`:
 
