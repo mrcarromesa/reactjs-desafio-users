@@ -8,6 +8,7 @@ import RouteComponent from './RouteComponent';
 
 const Routes: React.FC = () => (
   <Switch>
+    <Route path="/" element={<RouteComponent component={Dashboard} />} />
     <Route path="/home" element={<RouteComponent component={Dashboard} />} />
     <Route
       path="/export-users"
