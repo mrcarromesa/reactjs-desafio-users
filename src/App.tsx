@@ -7,7 +7,7 @@ import Routes from './routes';
 
 const App: React.FC = () => (
   <>
-    <HashRouter basename="/reactjs-desafio-users">
+    <HashRouter>
       <Routes />
     </HashRouter>
     <GlobalStyle />

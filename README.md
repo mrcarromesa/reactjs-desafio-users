@@ -1,4 +1,10 @@
-# Gerar Git pages com action
+# CRUD users
+
+## URL do resultado
+
+- [CRUD users](https://mrcarromesa.github.io/reactjs-desafio-users)
+
+## Gerar Github pages com actions
 
 - Baseado no artigo [Deploy React App using GitHub Actions](https://dev.to/achukka/deploy-react-app-using-github-actions-157d)
 
